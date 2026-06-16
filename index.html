@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp Cưới | Nhật Anh & Thanh Huyền</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Thiệp Cưới | Nhật Anh & Thanh Huyền" />
+  <meta name="description"
+    content="Trân trọng kính mời quý khách đến tham dự tiệc mừng Lễ Thành Hôn của Nhật Anh và Thanh Huyền. Sự hiện diện của quý vị là niềm vinh hạnh lớn nhất của gia đình!" />
+
+  <!-- Open Graph / Facebook / Zalo -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quoctrinh.click/" />
+  <meta property="og:title" content="Lễ Thành Hôn | Nhật Anh & Thanh Huyền" />
+  <meta property="og:description"
+    content="Kính mời quý khách đến chung vui cùng gia đình chúng tôi. Nhấp để xem chi tiết thiệp mời và vị trí tổ chức tiệc cưới." />
+  <meta property="og:image" content="https://quoctrinh.click/images/web/LG%20224.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://quoctrinh.click/" />
+  <meta property="twitter:title" content="Lễ Thành Hôn | Nhật Anh & Thanh Huyền" />
+  <meta property="twitter:description" content="Trân trọng kính mời quý khách đến chung vui cùng đại gia đình." />
+  <meta property="twitter:image" content="https://quoctrinh.click/images/web/LG%20224.jpg" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Pattaya&display=swap"
+    rel="stylesheet">
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F5F0E8;
+      background-image: url('https://chungdoi.com/images/pattern-bg.png');
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #F5F0E8;
+      background-image: url('https://chungdoi.com/images/pattern-bg.png');
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s;
+    }
+
+    .splash-screen.hidden {
+      transform: translateY(-100vh);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* --- CÁC ĐÁM MÂY (VÂN CLOUD) --- */
+    .cloud-decor {
+      position: absolute;
+      width: 120px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 40;
+      /* Chỉnh z-index tại đây (VD: 0 hoặc 10) nếu muốn chìm xuống dưới nền nội dung */
+      background-image: url('./images/cloud.webp');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    @media (min-width: 768px) {
+      .cloud-decor {
+        width: 180px;
+        height: 90px;
+      }
+    }
+
+    .cloud-1 {
+      left: -100px;
+      top: 15%;
+    }
+
+    .cloud-2 {
+      right: -2rem;
+      top: 28%;
+    }
+
+    @media (min-width: 768px) {
+      .cloud-2 {
+        right: -4rem;
+      }
+    }
+
+    .cloud-3 {
+      left: -5rem;
+      top: 65%;
+      transform: scaleY(-1);
+    }
+
+    @media (min-width: 768px) {
+      .cloud-3 {
+        left: -4rem;
+      }
+    }
+
+    .cloud-4 {
+      right: -2rem;
+      top: 72%;
+      transform: scaleY(-1);
+    }
+
+    @media (min-width: 768px) {
+      .cloud-4 {
+        right: -4rem;
+      }
+    }
+
+    .cloud-5 {
+      right: -3rem;
+      top: 1%;
+      transform: scaleX(-1);
+    }
+
+    .cloud-6 {
+      left: -3rem;
+      bottom: -10%;
+      transform: scaleY(-1);
+    }
+
+    .cloud-7 {
+      right: -1rem;
+      top: 45%;
+    }
+
+    @media (min-width: 768px) {
+      .cloud-7 {
+        right: -2rem;
+      }
+    }
+
+    /* Custom Animations for user's HTML */
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%);
+        left: -100%;
+      }
+
+      20% {
+        transform: translateX(200%);
+        left: 200%;
+      }
+
+      100% {
+        transform: translateX(200%);
+        left: 200%;
+      }
+    }
+
+    /* Pulse glow for open-invite button */
+    @keyframes btnPulse {
+      0%, 100% {
+        box-shadow: 0 4px 14px rgba(233, 206, 158, 0.35);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 4px 28px rgba(233, 206, 158, 0.7), 0 0 40px rgba(233, 206, 158, 0.25);
+        transform: scale(1.04);
+      }
+    }
+
+    #open-invite {
+      animation: btnPulse 2s ease-in-out infinite;
+    }
+
+    /* Tap hint fade in after delay */
+    .tap-hint {
+      opacity: 0;
+      animation: tapHintIn 1s ease forwards;
+      animation-delay: 3s;
+    }
+
+    @keyframes tapHintIn {
+      to { opacity: 1; }
+    }
+
+    .tap-hint-icon {
+      animation: tapBounce 1.5s ease-in-out infinite;
+      animation-delay: 4s;
+    }
+
+    @keyframes tapBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes seal-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(233, 206, 158, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        box-shadow: 0 4px 28px rgba(233, 206, 158, 0.8), inset 0 2px 6px rgba(255, 255, 255, 0.4);
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+
+    /* Music Player Animations */
+    @keyframes spin-cd {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-spin-cd {
+      animation: spin-cd 4s linear infinite;
+    }
+
+    @keyframes dance {
+
+      0%,
+      100% {
+        height: 20%;
+      }
+
+      50% {
+        height: 100%;
+      }
+    }
+
+    .animate-dance-1 {
+      animation: dance 1s ease-in-out infinite 0s;
+    }
+
+    .animate-dance-2 {
+      animation: dance 1s ease-in-out infinite 0.2s;
+    }
+
+    .animate-dance-3 {
+      animation: dance 1s ease-in-out infinite 0.4s;
+    }
+
+    .animate-dance-4 {
+      animation: dance 1s ease-in-out infinite 0.6s;
+    }
+
+    .music-paused .animate-spin-cd,
+    .music-paused .animate-dance-1,
+    .music-paused .animate-dance-2,
+    .music-paused .animate-dance-3,
+    .music-paused .animate-dance-4 {
+      animation-play-state: paused !important;
+    }
+
+    /* Fallback Font */
+    @font-face {
+      font-family: 'Fz Qellia';
+      src: local('Times New Roman');
+    }
+
+    /* ── GPU-Accelerated Splash Exit ── */
+    .splash-screen {
+      will-change: transform, opacity;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .splash-animate {
+      will-change: transform, opacity, filter;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .splash-btn-exit {
+      transform: scale(0.8) !important;
+      opacity: 0 !important;
+      transition: all 0.35s ease !important;
+      pointer-events: none;
+    }
+
+    .splash-element-exit {
+      transform: scale(1.3) !important;
+      opacity: 0 !important;
+      filter: brightness(1.6) blur(3px) !important;
+      transition: transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        filter 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+
+    /* ── Scroll Reveal ── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: opacity, transform;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Lightbox Gallery ── */
+    #lightbox {
+      will-change: opacity;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    #lightbox-img {
+      will-change: transform;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      transition: background 0.2s;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.3); }
+    .lb-nav.lb-prev { left: 12px; }
+    .lb-nav.lb-next { right: 12px; }
+
+    .lb-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      font-family: 'Lora', serif;
+      z-index: 50;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ── Parallax depth ── */
+    [data-parallax] {
+      will-change: transform;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* ── Falling Chữ Hỷ ── */
+    .petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 85;
+      overflow: hidden;
+      display: none;
+    }
+
+    .petals-container.active {
+      display: block;
+    }
+
+    .chu-hy {
+      position: absolute;
+      top: -40px;
+      animation: hyFall linear infinite, hySway ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes hyFall {
+      0% {
+        top: -40px;
+        opacity: 0;
+      }
+
+      4% {
+        opacity: var(--hy-opacity, 0.3);
+      }
+
+      88% {
+        opacity: var(--hy-opacity, 0.3);
+      }
+
+      100% {
+        top: 105vh;
+        opacity: 0;
+      }
+    }
+
+    @keyframes hySway {
+
+      0%,
+      100% {
+        transform: translateX(0) rotate(0deg) scale(1);
+      }
+
+      25% {
+        transform: translateX(20px) rotate(15deg) scale(1.05);
+      }
+
+      50% {
+        transform: translateX(-15px) rotate(-10deg) scale(0.95);
+      }
+
+      75% {
+        transform: translateX(18px) rotate(12deg) scale(1.02);
+      }
+    }
+  </style>
+</head>
+
+<body class="w-full flex justify-center bg-[#F5F0E8]">
+
+  <!-- Splash Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <div
+      style="box-shadow:0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(233, 206, 158, 0.15)"
+      class="jsx-a4d80d259781d393 relative rounded-lg w-[90%] md:w-[800px] max-w-full">
+      <div style="background:#680d0e;border:1px solid rgba(233, 206, 158, 0.15);clip-path:inset(0 round 8px)"
+        class="jsx-a4d80d259781d393 relative rounded-lg overflow-hidden min-h-[300px] flex flex-col items-center justify-center">
+        <!-- Con dấu Chữ Hỷ -->
+        <div
+          style="top:50px;width:56px;height:56px;transform:translate(-50%, -50%);background:radial-gradient(circle at 30% 30%, #e9ce9e, rgb(203, 176, 128));--shadow-color:rgba(233, 206, 158, 0.5);box-shadow:0 4px 20px rgba(233, 206, 158, 0.5), inset 0 2px 4px rgba(255,255,255,0.3);z-index:30;animation:seal-pulse 2s ease-in-out infinite"
+          class="jsx-a4d80d259781d393 absolute left-1/2 rounded-full flex items-center justify-center">
+          <img src="./images/chinese_happiness.webp" alt="Chữ Hỷ" class="w-8 h-8 object-contain relative z-[50]"
+            style="filter: brightness(0) saturate(100%) invert(11%) sepia(35%) saturate(5430%) hue-rotate(346deg) brightness(92%) contrast(100%); opacity:0.95;">
+        </div>
+        <img src="./images/phuong.webp" alt="" aria-hidden="true"
+          class="splash-animate jsx-a4d80d259781d393 absolute pointer-events-none w-[200px] md:w-[280px] -top-[10px] -left-[70px] md:-top-[20px] md:-left-[90px] opacity-30">
+        <img src="./images/rong.webp" alt="" aria-hidden="true"
+          class="splash-animate jsx-a4d80d259781d393 absolute pointer-events-none w-[200px] md:w-[280px] -bottom-[40px] -right-[70px] md:-bottom-[100px] md:-right-[90px] opacity-30">
+        <img src="./images/cloud.webp" alt="" aria-hidden="true"
+          class="splash-animate jsx-a4d80d259781d393 absolute pointer-events-none w-[80px] md:w-[100px] top-2 right-2 md:top-3 md:right-3 opacity-20">
+        <div class="splash-animate jsx-a4d80d259781d393 relative z-10 text-center px-6 pt-28 pb-14 md:pt-24 md:pb-8">
+          <h1 style="color:#e9ce9e;font-family:&quot;Fz Qellia&quot;, serif"
+            class="jsx-a4d80d259781d393 text-3xl sm:text-4xl mb-2 leading-tight">Nhật Anh<br
+              class="jsx-a4d80d259781d393"><span class="jsx-a4d80d259781d393 text-lg sm:text-xl">&amp;</span><br
+              class="jsx-a4d80d259781d393">Thanh Huyền</h1>
+          <div class="jsx-a4d80d259781d393 flex items-center justify-center gap-3 mb-2">
+            <div style="background:linear-gradient(to right, transparent, #e9ce9e)"
+              class="jsx-a4d80d259781d393 w-10 h-px"></div><span style="color:#e9ce9e;opacity:0.7"
+              class="jsx-a4d80d259781d393 text-sm">❦</span>
+            <div style="background:linear-gradient(to left, transparent, #e9ce9e)"
+              class="jsx-a4d80d259781d393 w-10 h-px"></div>
+          </div>
+          <div style="color:rgba(233, 206, 158, 0.8);font-family:&quot;Lora&quot;, &quot;Times New Roman&quot;, serif"
+            class="jsx-a4d80d259781d393 text-[18px] mb-5 flex flex-col items-center"><span>05 tháng 07, 2026</span>
+          </div>
+          <div class="jsx-a4d80d259781d393 mb-6">
+            <p style="color:rgba(233, 206, 158, 0.8);font-family:&quot;Lora&quot;, &quot;Times New Roman&quot;, serif"
+              class="jsx-a4d80d259781d393 text-[18px] font-light mb-2"><span>Thân Mời</span></p>
+          </div>
+          <button id="open-invite"
+            style="background-color:#e9ce9e;color:#4a0808;box-shadow:0 4px 14px rgba(233, 206, 158, 0.35);font-family:&quot;Lora&quot;, &quot;Times New Roman&quot;, serif"
+            class="jsx-a4d80d259781d393 relative px-8 py-2.5 text-lg font-semibold sm:font-medium rounded-full shadow-lg flex items-center justify-center mx-auto overflow-hidden">
+            <span>Mở thiệp</span>
+            <div
+              style="background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);animation:shine 3s ease-in-out infinite"
+              class="jsx-a4d80d259781d393 absolute top-0 h-full w-8 pointer-events-none"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Falling Petals -->
+  <div id="petals-container" class="petals-container"></div>
+
+  <!-- Main Content App -->
+  <div id="app-content"
+    class="w-full max-w-[480px] md:max-w-[900px] bg-[#680d0e] min-h-screen relative shadow-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+    <!-- Watermark Background -->
+    <div class="absolute inset-0 pointer-events-none z-0 opacity-10"
+      style="background-image: url('./images/rong-phuong.webp'); background-repeat: repeat; background-size: 100% auto; background-position: top center;">
+    </div>
+
+    <div class="relative w-full z-10 mx-auto">
+      <header class="relative flex flex-col items-center justify-center text-center z-10 pt-16 pb-8">
+        <div class="w-full flex items-center justify-center py-3 md:py-4 mb-8"
+          style="background-color: rgb(255, 227, 177);">
+          <img alt="Chữ Hỷ" class="w-[32px] md:w-[48px] h-[32px] md:h-[48px] object-contain" src="./images/chu-hy.webp">
+        </div>
+        <div class="flex flex-col items-center gap-0 fade-in-up"
+          style="color: rgb(255, 227, 177); font-family: &quot;The Nautigal&quot;, cursive;">
+          <div class="text-[50px] md:text-[60px] leading-[1.2]">Nhật Anh</div>
+          <div class="text-[38px] md:text-[45px] leading-[1.2]">&amp;</div>
+          <div class="text-[50px] md:text-[60px] leading-[1.2]">Thanh Huyền</div>
+        </div>
+        <div
+          class="relative flex items-start justify-center gap-2 md:gap-4 mt-8 w-full max-w-[420px] md:max-w-[520px] fade-in-up">
+          <div class="w-[160px] md:w-[220px] h-[240px] md:h-[330px]" data-parallax="-0.25">
+            <img alt="Phượng" class="w-full h-full object-contain" src="./images/phuong.webp">
+          </div>
+          <div class="w-[170px] md:w-[230px] h-[240px] md:h-[330px] mt-8 md:mt-12" data-parallax="0.2">
+            <img alt="Rồng" class="w-full h-full object-contain" src="./images/rong.webp">
+          </div>
+        </div>
+      </header>
+
+      <section class="relative px-3 md:px-4 z-10">
+        <!-- 6 Đám mây xung quanh phần nội dung (Quản lý toàn bộ bằng CSS .cloud-decor) -->
+        <div class="cloud-decor cloud-1" data-parallax="-0.12"></div>
+        <div class="cloud-decor cloud-2" data-parallax="0.1"></div>
+        <div class="cloud-decor cloud-3" data-parallax="0.09" data-base-transform="scaleY(-1)"></div>
+        <div class="cloud-decor cloud-4" data-parallax="-0.07" data-base-transform="scaleY(-1)"></div>
+        <div class="cloud-decor cloud-5" data-parallax="0.06" data-base-transform="scaleX(-1)"></div>
+        <div class="cloud-decor cloud-6" data-parallax="-0.1" data-base-transform="scaleY(-1)"></div>
+
+        <div class="relative py-10 md:py-14 px-4 md:px-6 z-30"
+          style="transform: translateZ(0); will-change: transform; background: radial-gradient(circle at 0px 0px, rgb(104, 14, 14) 35px, transparent 35px) left top / 70px 70px no-repeat, radial-gradient(circle at 100% 0px, rgb(104, 14, 14) 35px, transparent 35px) right top / 70px 70px no-repeat, radial-gradient(circle at 0px 100%, rgb(104, 14, 14) 35px, transparent 35px) left bottom / 70px 70px no-repeat, radial-gradient(circle at 100% 100%, rgb(104, 14, 14) 35px, transparent 35px) right bottom / 70px 70px no-repeat, url(&quot;./images/bg-frame.jpg&quot;) center center / cover no-repeat;">
+          <div class="flex flex-col items-center gap-6 md:gap-8 text-center mb-12 md:mb-16 fade-in-up">
+            <h2 class="uppercase font-bold text-[20px] md:text-[24px]"
+              style="color: rgb(104, 14, 14); font-family: &quot;Times New Roman&quot;, Times, serif; font-weight: 700; letter-spacing: 0.05em;">
+              <span>THÔNG TIN LỄ CƯỚI</span>
+            </h2>
+            <div class="w-full flex items-start justify-center gap-3 md:gap-8"
+              style="color: rgb(104, 14, 14); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">
+              <div class="flex-1 min-w-0 flex flex-col items-center gap-1 text-center max-w-[160px] md:max-w-[280px]">
+                <span class="text-[14px] md:text-[15px]"><span>Ông Bà</span></span>
+                <span class="text-[14px] md:text-[15px] font-semibold">Phan Văn Quân</span>
+                <span class="text-[14px] md:text-[15px] font-semibold">Trần Thị Minh</span>
+                <div class="text-[12px] md:text-[13px] mt-1 whitespace-pre-line leading-tight flex flex-col">
+                  <span></span>
+                </div>
+              </div>
+              <div class="w-[1px] h-[60px] self-center" style="background-color: rgb(104, 14, 14);"></div>
+              <div class="flex-1 min-w-0 flex flex-col items-center gap-1 text-center max-w-[160px] md:max-w-[280px]">
+                <span class="text-[14px] md:text-[15px]"><span>Ông Bà</span></span>
+                <span class="text-[14px] md:text-[15px] font-semibold">Nguyễn Văn Thủ</span>
+                <span class="text-[14px] md:text-[15px] font-semibold">Nguyễn Thị Định</span>
+                <div class="text-[12px] md:text-[13px] mt-1 whitespace-pre-line leading-tight flex flex-col">
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[15px] md:text-[16px] flex flex-col gap-2"
+              style="white-space: pre-line; font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">
+              <span>TRÂN TRỌNG BÁO TIN LỄ <br> THÀNH HÔN CỦA CON CHÚNG TÔI</span>
+            </div>
+            <div class="flex flex-col items-center gap-2" style="color: rgb(104, 14, 14);">
+              <h3 class="w-full flex items-center justify-center "
+                style="font-size: 21px; font-family: &quot;Fz Qellia&quot;, serif;">Phan Nhật Anh</h3>
+              <div class="text-[30px] md:text-[35px]" style="font-family: &quot;Fz Qellia&quot;, serif;">&amp;</div>
+              <h3 class="w-full flex items-center justify-center "
+                style="font-size: 21px; font-family: &quot;Fz Qellia&quot;, serif;">Nguyễn Thanh Huyền</h3>
+            </div>
+            <div class="flex flex-col items-center gap-3 text-center"
+              style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">
+              <div style="color: rgb(104, 14, 14);"><span
+                  class="text-[14px] md:text-[15px] whitespace-pre-line text-center">HÔN LỄ ĐƯỢC CỬ HÀNH TẠI</span>
+              </div>
+              <p class="text-[14px] md:text-[15px] text-center uppercase" style="color: rgb(104, 14, 14);">VÀO LÚC 10:30
+              </p>
+              <div class="flex items-center justify-center" style="color: rgb(104, 14, 14);">
+                <span class="text-[14px] md:text-[15px] w-[70px] md:w-[85px] uppercase"
+                  style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; text-align: right;"><span>CHỦ
+                    NHẬT</span></span>
+                <span class="text-[14px] opacity-50 mx-2 md:mx-3">|</span>
+                <span class="text-[32px] md:text-[38px]"
+                  style="font-family: Baskerville, &quot;Times New Roman&quot;, serif;">05</span>
+                <span class="text-[14px] opacity-50 mx-2 md:mx-3">|</span>
+                <span class="text-[14px] md:text-[15px] w-[70px] md:w-[85px] uppercase"
+                  style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; text-align: left;"><span>THÁNG
+                    07</span></span>
+              </div>
+              <div class="text-[20px] md:text-[22px]"
+                style="color: rgb(104, 14, 14); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">2026
+              </div>
+              <div class="text-[13px] md:text-[14px]"
+                style="color: rgb(104, 14, 14); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">(Ngày 21
+                tháng 05 Âm Lịch)</div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center mb-12 md:mb-16 fade-in-up">
+            <h2 class="uppercase font-bold text-[20px] md:text-[24px] mb-6"
+              style="color: rgb(104, 14, 14); font-family: &quot;Times New Roman&quot;, Times, serif; font-weight: 700; letter-spacing: 0.05em;">
+              <span>Album Ảnh Cưới</span>
+            </h2>
+            <div class="w-full max-w-[320px] md:max-w-[550px]">
+              <div class="grid grid-cols-2 gap-3 md:gap-4 p-4 md:p-6">
+                <!-- 8 Images -->
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(0)">
+                  <img alt="Ảnh cưới 1" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A1677 (1).jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(1)">
+                  <img alt="Ảnh cưới 2" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A1823.jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(2)">
+                  <img alt="Ảnh cưới 3" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2135.jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(3)">
+                  <img alt="Ảnh cưới 4" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2204 (1).jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(4)">
+                  <img alt="Ảnh cưới 5" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2292.jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(5)">
+                  <img alt="Ảnh cưới 6" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2301.jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(6)">
+                  <img alt="Ảnh cưới 7" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2326 (2).jpg">
+                </div>
+                <div
+                  class="group relative aspect-square cursor-pointer overflow-hidden rounded-lg border border-[#00000011] bg-white/50"
+                  onclick="openLightbox(7)">
+                  <img alt="Ảnh cưới 8" loading="lazy"
+                    class="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                    src="./images/phan/2U3A2382.jpg">
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="uppercase font-bold text-[20px] md:text-[24px] text-center mb-4"
+            style="color: rgb(104, 14, 14); font-family: &quot;Times New Roman&quot;, Times, serif; font-weight: 700; letter-spacing: 0.05em;">
+            <span>THÔNG TIN TIỆC CƯỚI</span>
+          </h2>
+          <div class="flex flex-col items-center gap-4 md:gap-6 text-center"
+            style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">
+            <h3 class="text-[18px] md:text-[20px] uppercase flex flex-col items-center"
+              style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);"><span>Tiệc
+                cưới sẽ diễn ra vào lúc:</span></h3>
+            <div class="text-[18px] md:text-[20px] font-semibold"
+              style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">10:30</div>
+            <div class="flex items-center justify-center"
+              style="font-family: Baskerville, &quot;Times New Roman&quot;, serif;">
+              <span class="text-[14px] md:text-[15px] w-[70px] md:w-[85px] uppercase"
+                style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; text-align: right;"><span>CHỦ
+                  NHẬT</span></span>
+              <span class="text-[14px] opacity-50 mx-2 md:mx-3">|</span>
+              <span class="text-[30px] md:text-[36px] font-semibold"
+                style="font-family: Baskerville, &quot;Times New Roman&quot;, serif;">05</span>
+              <span class="text-[14px] opacity-50 mx-2 md:mx-3">|</span>
+              <span class="text-[14px] md:text-[15px] w-[70px] md:w-[85px] uppercase"
+                style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; text-align: left;"><span>THÁNG
+                  07</span></span>
+            </div>
+            <div class="text-[20px] md:text-[22px]"
+              style="font-family: Baskerville, &quot;Times New Roman&quot;, serif;">2026</div>
+            <div class="text-[13px] md:text-[14px]"
+              style="color: rgb(104, 14, 14); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">(Ngày 21
+              tháng 05 Âm Lịch)</div>
+          </div>
+          <!-- <div class="relative z-10 flex flex-col items-center justify-center w-full mt-6 pb-2">
+            <button
+              class="inline-flex items-center justify-center rounded-[10px] px-8 py-3 font-semibold transition-transform hover:scale-[1.03]"
+              style="background-color: rgb(104, 14, 14); color: rgb(255, 227, 177); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">
+              <span class="relative z-10 flex items-center gap-2"><span>XÁC NHẬN THAM DỰ</span></span>
+            </button>
+          </div> -->
+        </div>
+      </section>
+
+      <div class="relative py-8 md:py-12 z-10">
+        <!-- Đám mây 7 (Phần tiệc cưới) -->
+        <div class="cloud-decor cloud-7" data-parallax="-0.08"></div>
+        <section class="relative flex flex-col gap-6 md:gap-8 px-6 md:px-10 pb-12 md:pb-16 fade-in-up">
+          <div class="relative text-center">
+            <h3 class="font-normal uppercase text-[20px] md:text-[26px] flex flex-col items-center"
+              style="color: rgb(255, 227, 177); font-family: &quot;Times New Roman&quot;, Times, serif; font-weight: 700; letter-spacing: 0.05em;">
+              <span>Tiệc cưới sẽ tổ chức tại</span>
+            </h3>
+            <div
+              class="mx-auto mt-3 max-w-sm md:max-w-[500px] text-center text-sm md:text-base tracking-wide whitespace-pre-line flex flex-col items-center pb-3 border-b border-white/10"
+              style="background-color: transparent; color: rgb(255, 227, 177); font-family: Baskerville, &quot;Times New Roman&quot;, serif;">
+              <span class="text-[18px] md:text-[20px] font-semibold mb-1">Trung tâm tổ chức sự kiện Golf Palace</span>
+              <span>Số 1 Nguyễn Lương Bằng, Phường Chu Văn An, TP Hải Phòng</span>
+            </div>
+          </div>
+          <div class="relative flex flex-col items-center gap-4 md:gap-5 w-full">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1861.0786615853397!2d106.38380065510854!3d21.10629313144301!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313579a587647d0b%3A0xaf601807d3105466!2zMSBOZ3V54buFbiBMxrDGoW5nIELhurFuZywgQ2h1IFbEg24gQW4sIEjhuqNpIFBow7JuZyAzNDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2sus!4v1781602276818!5m2!1svi!2sus"
+              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" width="600" height="450" style="border:0;" allowfullscreen=""
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              class="h-[280px] md:h-[380px] w-full max-w-full md:max-w-[560px] rounded-2xl overflow-hidden bg-[#e9ce9e] bg-opacity-30"
+              style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </section>
+      </div>
+
+      <section class="relative px-4 md:px-8 pb-12 md:pb-16 z-10 fade-in-up" style="color: rgb(255, 227, 177);">
+        <div class="text-center">
+          <h2 class="text-[22px] md:text-[24px]" style="font-family: Pattaya, cursive; color: rgb(255, 227, 177);">
+            <span>Sổ lưu bút</span>
+          </h2>
+        </div>
+        <form id="guestbook-form" class="mt-6 mx-auto w-full max-w-full md:max-w-[600px]">
+          <div class="flex flex-col gap-3" style="background-color: transparent;">
+            <div class="mb-4">
+              <input id="guest-name" placeholder="Nhập tên của bạn*"
+                class="w-full rounded-[6px] border px-4 py-2 text-[14px] focus:outline-none bg-transparent" required
+                type="text" style="border-color: rgb(255, 227, 177); color: rgb(255, 227, 177);">
+            </div>
+            <textarea id="guest-message" placeholder="Nhập lời chúc của bạn*"
+              class="w-full rounded-[6px] border px-4 py-2 text-[14px] focus:outline-none bg-transparent" rows="4"
+              required style="border-color: rgb(255, 227, 177); color: rgb(255, 227, 177); resize: none;"></textarea>
+            <div class="mt-4 flex items-center justify-between text-xs">
+              <span id="form-status" style="color: rgb(255, 227, 177);" class="text-[13px] font-medium"></span>
+              <button type="submit" id="guest-submit-btn"
+                class="rounded-full px-6 py-2.5 text-[12px] font-semibold transition-transform hover:scale-105 disabled:opacity-50"
+                style="background-color: rgb(255, 227, 177); color: rgb(104, 14, 14);"><span>GỬI LỜI
+                  CHÚC</span></button>
+            </div>
+          </div>
+        </form>
+        <div id="guestbook-list"
+          class="mt-8 w-full max-h-[500px] space-y-3 overflow-y-auto pr-2 mx-auto max-w-full md:max-w-[600px]">
+          <div class="text-center text-sm opacity-70 mt-4">Đang tải lời chúc...</div>
+        </div>
+      </section>
+
+      <div class="flex flex-col items-center justify-center py-8 relative px-4 md:px-8 pb-12 md:pb-16 z-10 fade-in-up"
+        style="background-color: transparent;">
+        <h2 class="mb-6 text-3xl font-pattaya flex flex-col items-center" style="color: rgb(255, 227, 177);"><span>Hộp
+            Mừng Cưới</span></h2>
+        <div class="flex flex-row gap-4 sm:gap-8 items-start justify-center px-4 w-full">
+          <div class="flex flex-col items-center flex-1">
+            <h3 class="mb-3 text-sm flex items-end justify-center font-medium text-center"
+              style="color: rgb(255, 227, 177);">Chú Rể - Nhật Anh</h3>
+            <div class="w-32 h-32 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center">
+              <img alt="QR Code" class="w-full h-full object-contain" src="./images/qr-chu-re.jpg">
+            </div>
+          </div>
+          <div class="flex flex-col items-center flex-1">
+            <h3 class="mb-3 text-sm flex items-end justify-center font-medium text-center"
+              style="color: rgb(255, 227, 177);">Cô Dâu - Thanh Huyền</h3>
+            <div class="w-32 h-32 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center">
+              <img alt="QR Code" class="w-full h-full object-contain" src="./images/qr-co-dau.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="relative w-full flex flex-col items-center justify-center px-4 py-6 text-center z-10"
+        style="background-color: rgb(255, 227, 177);">
+        <span class="whitespace-pre-line flex flex-col items-center gap-1 text-[13px] md:text-[15px]"
+          style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">
+          <span>Sự hiện diện của bạn và gia đình là niềm vinh hạnh của gia đình chúng tôi!</span></span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Splash logic moved to main.js -->
+
+  <!-- Floating Music Button + Visualizer -->
+  <div id="music-wrapper" class="fixed bottom-[80px] right-4 md:bottom-6 md:right-6 z-[90]">
+    <!-- Visualizer Ring Canvas (behind button) -->
+    <canvas id="music-visualizer" width="120" height="120"
+      style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; width:120px; height:120px; z-index:0;"></canvas>
+    <button id="music-toggle-btn" aria-label="Toggle music"
+      class="relative w-12 h-12 rounded-full shadow-lg cursor-pointer focus:outline-none transition-all hover:scale-110 active:scale-95 hover:shadow-xl music-paused"
+      style="z-index:1;">
+      <div class="absolute inset-0 rounded-full animate-spin-cd"
+        style="background: linear-gradient(to right bottom, #8b1a1a, #680d0e, #8b1a1a); box-shadow: 0 0 12px rgba(104, 13, 14, 0.5);">
+        <div class="absolute inset-1 rounded-full border border-yellow-200/30"></div>
+        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-white/15 via-transparent to-transparent"></div>
+      </div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="flex items-end gap-0.5 h-4">
+          <div class="w-1 rounded-full animate-dance-1" style="height: 60%; background: #e9ce9e;"></div>
+          <div class="w-1 rounded-full animate-dance-2" style="height: 100%; background: #e9ce9e;"></div>
+          <div class="w-1 rounded-full animate-dance-3" style="height: 40%; background: #e9ce9e;"></div>
+          <div class="w-1 rounded-full animate-dance-4" style="height: 80%; background: #e9ce9e;"></div>
+        </div>
+      </div>
+    </button>
+    <audio id="bg-music" loop src="./music/beautiful-in-white.mp3" preload="auto"></audio>
+  </div>
+
+
+  <!-- Lightbox Gallery -->
+  <div id="lightbox"
+    class="fixed inset-0 z-[100] bg-black/90 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+    <!-- Close -->
+    <button onclick="closeLightbox()"
+      class="absolute top-4 right-4 md:top-6 md:right-6 text-white p-2 hover:bg-white/20 rounded-full transition-colors z-50">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <!-- Prev -->
+    <button class="lb-nav lb-prev" onclick="event.stopPropagation(); navigateLightbox(-1)">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <!-- Next -->
+    <button class="lb-nav lb-next" onclick="event.stopPropagation(); navigateLightbox(1)">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+    <!-- Image -->
+    <img id="lightbox-img" src=""
+      class="max-w-[95vw] max-h-[85vh] md:max-w-[90vw] object-contain rounded-lg drop-shadow-2xl scale-95 relative z-40 select-none"
+      onclick="event.stopPropagation();">
+    <!-- Counter -->
+    <div id="lb-counter" class="lb-counter"></div>
+  </div>
+
+
+  <!-- Main JS (splash/music/lightbox/scroll-reveal/parallax) -->
+  <script src="main.js?v=20260615"></script>
+
+  <!-- Firebase Guestbook Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import {
+      getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKmuHUtoUQuSQDV1BIuMwykQXfpjXoXKI",
+      authDomain: "thiepcuoiphanh.firebaseapp.com",
+      projectId: "thiepcuoiphanh",
+      storageBucket: "thiepcuoiphanh.firebasestorage.app",
+      messagingSenderId: "723925081155",
+      appId: "1:723925081155:web:8436485da4c54ac52e08f6",
+      measurementId: "G-RJ6FQ5BHEF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('guestbook-form');
+    const statusText = document.getElementById('form-status');
+    const submitBtn = document.getElementById('guest-submit-btn');
+
+    // Xử lý gửi lời chúc
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('guest-name');
+        const messageInput = document.getElementById('guest-message');
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (!name || !message) return;
+
+        submitBtn.disabled = true;
+        statusText.textContent = "Đang gửi lời chúc...";
+
+        try {
+          await addDoc(collection(db, "guestbook_messages"), {
+            name: name,
+            message: message,
+            createdAt: serverTimestamp()
+          });
+
+          nameInput.value = '';
+          messageInput.value = '';
+          statusText.textContent = "Đã gửi lời chúc thành công!";
+          setTimeout(() => { if (statusText.textContent === "Đã gửi lời chúc thành công!") statusText.textContent = ""; }, 3000);
+        } catch (error) {
+          console.error("Error adding document: ", error);
+          statusText.textContent = "Lỗi khi gửi (hãy kiểm tra quyền Firestore Rules)";
+          setTimeout(() => statusText.textContent = "", 4000);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Xử lý hiển thị realtime
+    const listContainer = document.getElementById('guestbook-list');
+    if (listContainer) {
+      const q = query(collection(db, "guestbook_messages"), orderBy("createdAt", "desc"));
+
+      onSnapshot(q, (querySnapshot) => {
+        listContainer.innerHTML = '';
+
+        if (querySnapshot.empty) {
+          listContainer.innerHTML = '<div class="text-center text-sm opacity-70 mt-4">Chưa có ai gửi, hãy là người khai bút nha!</div>';
+          return;
+        }
+
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const name = data.name || "Khách mời";
+          const message = data.message || "";
+          let timeString = "Vừa xong";
+
+          if (data.createdAt) {
+            const date = data.createdAt.toDate();
+            // Định dạng giờ: 13:45 03/04/2026
+            timeString = date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' ' + date.toLocaleDateString('vi-VN');
+          }
+
+          const msgDiv = document.createElement('div');
+          msgDiv.className = 'rounded-lg border p-3 text-xs mb-3';
+          msgDiv.style.borderColor = 'rgba(255, 227, 177, 0.4)';
+          msgDiv.style.backgroundColor = 'rgba(255, 227, 177, 0.1)';
+
+          msgDiv.innerHTML = `
+            <div class="flex items-start justify-between">
+              <span class="font-semibold text-sm" style="color: rgb(255, 227, 177);">${name}</span>
+              <span class="text-xs opacity-70">${timeString}</span>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed">${message}</p>
+          `;
+          listContainer.appendChild(msgDiv);
+        });
+      }, (error) => {
+        console.error("Lỗi Firestore: ", error);
+        listContainer.innerHTML = '<div class="text-center text-sm opacity-70 text-red-400 mt-4">Không thể kết nối máy chủ dữ liệu!</div>';
+      });
+    }
+  </script>
+</body>
+
+</html>
