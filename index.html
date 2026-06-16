@@ -13,18 +13,18 @@
 
   <!-- Open Graph / Facebook / Zalo -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://quoctrinh.click/" />
+  <meta property="og:url" content="https://phanclick.github.io/" />
   <meta property="og:title" content="Lễ Thành Hôn | Nhật Anh & Thanh Huyền" />
   <meta property="og:description"
     content="Kính mời quý khách đến chung vui cùng gia đình chúng tôi. Nhấp để xem chi tiết thiệp mời và vị trí tổ chức tiệc cưới." />
-  <meta property="og:image" content="https://quoctrinh.click/images/web/LG%20224.jpg" />
+  <meta property="og:image" content="https://phanclick.github.io/images/og-preview.jpg" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://quoctrinh.click/" />
+  <meta property="twitter:url" content="https://phanclick.github.io/" />
   <meta property="twitter:title" content="Lễ Thành Hôn | Nhật Anh & Thanh Huyền" />
   <meta property="twitter:description" content="Trân trọng kính mời quý khách đến chung vui cùng đại gia đình." />
-  <meta property="twitter:image" content="https://quoctrinh.click/images/web/LG%20224.jpg" />
+  <meta property="twitter:image" content="https://phanclick.github.io/images/og-preview.jpg" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -174,10 +174,13 @@
 
     /* Pulse glow for open-invite button */
     @keyframes btnPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         box-shadow: 0 4px 14px rgba(233, 206, 158, 0.35);
         transform: scale(1);
       }
+
       50% {
         box-shadow: 0 4px 28px rgba(233, 206, 158, 0.7), 0 0 40px rgba(233, 206, 158, 0.25);
         transform: scale(1.04);
@@ -196,7 +199,9 @@
     }
 
     @keyframes tapHintIn {
-      to { opacity: 1; }
+      to {
+        opacity: 1;
+      }
     }
 
     .tap-hint-icon {
@@ -205,8 +210,15 @@
     }
 
     @keyframes tapBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
     }
 
     @keyframes seal-pulse {
@@ -346,9 +358,9 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
       display: flex;
       align-items: center;
@@ -357,20 +369,29 @@
       z-index: 50;
       transition: background 0.2s;
     }
-    .lb-nav:hover { background: rgba(255,255,255,0.3); }
-    .lb-nav.lb-prev { left: 12px; }
-    .lb-nav.lb-next { right: 12px; }
+
+    .lb-nav:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lb-nav.lb-prev {
+      left: 12px;
+    }
+
+    .lb-nav.lb-next {
+      right: 12px;
+    }
 
     .lb-counter {
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       font-size: 13px;
       font-family: 'Lora', serif;
       z-index: 50;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.4);
       padding: 4px 14px;
       border-radius: 20px;
       backdrop-filter: blur(4px);
@@ -588,7 +609,7 @@
             <div class="flex flex-col items-center gap-3 text-center"
               style="font-family: Baskerville, &quot;Times New Roman&quot;, serif; color: rgb(104, 14, 14);">
               <div style="color: rgb(104, 14, 14);"><span
-                  class="text-[14px] md:text-[15px] whitespace-pre-line text-center">HÔN LỄ ĐƯỢC CỬ HÀNH TẠI</span>
+                  class="text-[14px] md:text-[15px] whitespace-pre-line text-center">HÔN LỄ ĐƯỢC CỬ HÀNH</span>
               </div>
               <p class="text-[14px] md:text-[15px] text-center uppercase" style="color: rgb(104, 14, 14);">VÀO LÚC 10:30
               </p>
